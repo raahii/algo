@@ -1,48 +1,85 @@
 package main
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
-func TestMaxInt(t *testing.T) {
+func TestMaxInts(t *testing.T) {
 	input := []int{1, 0, 100, 5, 10, -2, -100, 100}
-	expected := 100
+	actual := struct {
+		Value int
+		Index int
+	}{}
+	actual.Value, actual.Index = MaxInts(input)
 
-	actual := MaxInt(input)
-
-	if actual != expected {
-		t.Fatalf("TestMaxInt Failed! (expected: %d actual: %d)", expected, actual)
-	}
+	expected := struct {
+		Value int
+		Index int
+	}{100, 2}
+	assert.Equal(t, expected, actual)
 }
 
-func TestMinInt(t *testing.T) {
+func TestMinInts(t *testing.T) {
 	input := []int{1, 0, 100, 5, 10, -2, -100, 100}
-	expected := -100
+	actual := struct {
+		Value int
+		Index int
+	}{}
+	actual.Value, actual.Index = MinInts(input)
 
-	actual := MinInt(input)
+	expected := struct {
+		Value int
+		Index int
+	}{-100, 6}
+	assert.Equal(t, expected, actual)
+}
 
-	if actual != expected {
-		t.Fatalf("TestMinInt Failed! (expected: %d actual: %d)", expected, actual)
-	}
+func TestSumInts(t *testing.T) {
+	input := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	actual := SumInts(input)
+
+	expected := 11 * 10 / 2
+	assert.Equal(t, expected, actual)
 }
 
 func TestReverseInts(t *testing.T) {
 	input := []int{1, 0, 100, 5, 10, -2, -100, 100}
-	expected := []int{100, -100, -2, 10, 5, 100, 0, 1}
-
 	actual := ReverseInts(input)
 
-	if !reflect.DeepEqual(actual, expected) {
-		t.Fatalf("TestReverseInts#1 Failed! (expected: %d actual: %d)", expected, actual)
+	expected := []int{100, -100, -2, 10, 5, 100, 0, 1}
+	assert.Equal(t, expected, actual)
+}
+
+func TestExtendInts(t *testing.T) {
+	arr1, arr2 := []int{1, 1, 1}, []int{2, 2, 2}
+	actual := ExtendInts(arr1, arr2)
+
+	expected := []int{1, 1, 1, 2, 2, 2}
+	assert.Equal(t, expected, actual)
+}
+
+func TestInts2d(t *testing.T) {
+	actual := Ints2d(20, 10)
+	assert.Equal(t, 20, len(actual))
+	assert.Equal(t, 10, len(actual[0]))
+}
+
+func TestMemsetInts1d(t *testing.T) {
+	nums := make([]int, 10)
+	MemsetInts1d(nums, 5)
+	for _, n := range nums {
+		assert.Equal(t, 5, n)
 	}
+}
 
-	input = []int{}
-	expected = []int{}
-
-	actual = ReverseInts(input)
-
-	if !reflect.DeepEqual(actual, expected) {
-		t.Fatalf("TestReverseInts#2 Failed! (expected: %d actual: %d)", expected, actual)
+func TestMemsetInts2d(t *testing.T) {
+	nums := Ints2d(10, 10)
+	MemsetInts2d(nums, 5)
+	for _, row := range nums {
+		for _, col := range row {
+			assert.Equal(t, 5, col)
+		}
 	}
 }
