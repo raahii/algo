@@ -8,31 +8,30 @@ import (
 
 /* IO */
 
-func ReadInt() int {
+func ReadInt(f *os.File) int {
 	var n int
-	fmt.Scan(&n)
+	fmt.Fscanf(f, "%d", &n)
 	return n
 }
 
-func ReadInts(n int) []int {
+func ReadInts(f *os.File, n int) []int {
 	nums := make([]int, n)
 	for i := 0; i < n; i++ {
-		fmt.Scan(&nums[i])
+		fmt.Fscanf(f, "%d", &nums[i])
 	}
 	return nums
 }
 
-var sc = bufio.NewScanner(os.Stdin)
-
-func ReadLine() string {
+func ReadLine(f *os.File) string {
+	sc := bufio.NewScanner(f)
 	sc.Scan()
 	return sc.Text()
 }
 
-func ReadWords(n int) []string {
+func ReadWords(f *os.File, n int) []string {
 	strs := make([]string, n)
 	for i := 0; i < n; i++ {
-		fmt.Scanln(&strs[i])
+		fmt.Fscanf(f, "%s", &strs[i])
 	}
 	return strs
 }
