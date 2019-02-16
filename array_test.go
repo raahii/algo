@@ -83,3 +83,27 @@ func TestMemsetInts2d(t *testing.T) {
 		}
 	}
 }
+
+func TestContainsInt(t *testing.T) {
+	// exist
+	nums, num := []int{1, 4, 6, 7, 2}, 4
+	actual := ContainsInt(nums, num)
+	expected := true
+	assert.Equal(t, expected, actual)
+
+	nums, num = []int{1, 4, 6, 2}, 2
+	actual = ContainsInt(nums, num)
+	expected = true
+	assert.Equal(t, expected, actual)
+
+	// not exist
+	nums, num = []int{1, 4, 6, 7, 2}, 100
+	actual = ContainsInt(nums, num)
+	expected = false
+	assert.Equal(t, expected, actual)
+
+	nums, num = []int{6, 2}, -1
+	actual = ContainsInt(nums, num)
+	expected = false
+	assert.Equal(t, expected, actual)
+}

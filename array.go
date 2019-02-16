@@ -1,5 +1,7 @@
 package main
 
+import "sort"
+
 /* Array */
 
 func MaxInts(nums []int) (int, int) {
@@ -67,4 +69,28 @@ func MemsetInts2d(nums [][]int, val int) {
 			nums[i][j] = val
 		}
 	}
+}
+
+func ContainsInt(nums []int, num int) bool {
+	sort.Slice(nums, func(i, j int) bool {
+		return nums[i] < nums[j]
+	})
+
+	s, e := 0, len(nums)
+	for {
+		if s >= e {
+			break
+		}
+
+		m := (e + s) / 2
+		if nums[m] == num {
+			return true
+		} else if num > nums[m] {
+			s = m + 1
+		} else {
+			e = m
+		}
+	}
+
+	return false
 }
