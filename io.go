@@ -1,4 +1,4 @@
-package main
+package algo
 
 import (
 	"bufio"
@@ -35,5 +35,3 @@ func ReadWords(f *os.File, n int) []string {
 	}
 	return strs
 }
-
-func main() {}
