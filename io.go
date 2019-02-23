@@ -22,10 +22,18 @@ func ReadInts(f *os.File, n int) []int {
 	return nums
 }
 
-func ReadLine(f *os.File) string {
-	sc := bufio.NewScanner(f)
-	sc.Scan()
-	return sc.Text()
+func ReadLines(f *os.File, n int) []string {
+	var lines []string
+	reader := bufio.NewReader(f)
+	for i := 0; i < n; i++ {
+		bytes, _, err := reader.ReadLine()
+		if err != nil {
+			break
+		}
+		lines = append(lines, string(bytes))
+	}
+
+	return lines
 }
 
 func ReadWords(f *os.File, n int) []string {

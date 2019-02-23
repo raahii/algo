@@ -54,16 +54,19 @@ func TestReadInts(t *testing.T) {
 	assert.Equal(t, expected, actual)
 }
 
-func TestReadLine(t *testing.T) {
-	expected := "おっす！おら悟空！"
-	f, err := TempFile(expected + "\n")
+func TestReadLines(t *testing.T) {
+	str := "オッス！おら悟空！\nいっちょやってみっか！\n"
+	f, err := TempFile(str)
 	if err != nil {
 		t.Fatal(err)
 	}
 	defer f.Close()
 
-	actual := ReadLine(f)
-
+	expected := []string{
+		"オッス！おら悟空！",
+		"いっちょやってみっか！",
+	}
+	actual := ReadLines(f, 2)
 	assert.Equal(t, expected, actual)
 }
 
