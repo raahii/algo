@@ -48,7 +48,7 @@ func main() {
 	files := []string{
 		"../array.go",
 		"../io.go",
-		"../ope.go",
+		"../calc.go",
 	}
 
 	allFuncStr := ""

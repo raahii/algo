@@ -72,9 +72,7 @@ func MemsetInts2d(nums [][]int, val int) {
 }
 
 func ContainsInt(nums []int, num int) bool {
-	sort.Slice(nums, func(i, j int) bool {
-		return nums[i] < nums[j]
-	})
+	sort.Ints(nums)
 
 	s, e := 0, len(nums)
 	for {
