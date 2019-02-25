@@ -54,6 +54,21 @@ func TestReadInts(t *testing.T) {
 	assert.Equal(t, expected, actual)
 }
 
+func TestScanInts(t *testing.T) {
+	f, err := TempFile("3 5 7\n")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer f.Close()
+
+	var A, B, C int
+	ScanInts(f, &A, &B, &C)
+	actual := []int{A, B, C}
+
+	expected := []int{3, 5, 7}
+	assert.Equal(t, expected, actual)
+}
+
 func TestReadLines(t *testing.T) {
 	str := "オッス！おら悟空！\nいっちょやってみっか！\n"
 	f, err := TempFile(str)

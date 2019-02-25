@@ -22,6 +22,12 @@ func ReadInts(f *os.File, n int) []int {
 	return nums
 }
 
+func ScanInts(f *os.File, vars ...*int) {
+	for i := 0; i < len(vars); i++ {
+		fmt.Fscanf(f, "%d", vars[i])
+	}
+}
+
 func ReadLines(f *os.File, n int) []string {
 	var lines []string
 	reader := bufio.NewReader(f)
