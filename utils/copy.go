@@ -77,5 +77,8 @@ func main() {
 		}
 	}
 
-	fmt.Println("// {{{\n" + allFuncStr + "// }}}\n")
+	// add comment and credit
+	credit := "// source: https://github.com/raahii/algo\n"
+	allFuncStr = "// {{{\n" + credit + allFuncStr + "// }}}\n"
+	fmt.Println(allFuncStr)
 }

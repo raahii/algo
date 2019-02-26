@@ -7,3 +7,11 @@ func Pow(a, n int) int {
 	}
 	return c
 }
+
+func Abs(n int) int {
+	if n < 0 {
+		return -n
+	}
+
+	return n
+}

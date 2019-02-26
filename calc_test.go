@@ -11,3 +11,13 @@ func TestPow(t *testing.T) {
 	expected := 16
 	assert.Equal(t, expected, actual)
 }
+
+func TestAbs(t *testing.T) {
+	actual := Abs(-100)
+	expected := 100
+	assert.Equal(t, expected, actual)
+
+	actual = Abs(255)
+	expected = 255
+	assert.Equal(t, expected, actual)
+}
