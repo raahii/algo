@@ -4,7 +4,17 @@ import "sort"
 
 /* Array */
 
-func MaxInts(nums []int) (int, int) {
+func MaxInts(nums ...int) int {
+	var maxVal int
+	for i, e := range nums {
+		if i == 0 || e > maxVal {
+			maxVal = e
+		}
+	}
+	return maxVal
+}
+
+func MaxIntsWithIdx(nums ...int) (int, int) {
 	var maxIdx, maxVal int
 	for i, e := range nums {
 		if i == 0 || e > maxVal {
@@ -15,7 +25,17 @@ func MaxInts(nums []int) (int, int) {
 	return maxVal, maxIdx
 }
 
-func MinInts(nums []int) (int, int) {
+func MinInts(nums ...int) int {
+	var minVal int
+	for i, e := range nums {
+		if i == 0 || e < minVal {
+			minVal = e
+		}
+	}
+	return minVal
+}
+
+func MinIntsWithIdx(nums ...int) (int, int) {
 	var minIdx, minVal int
 	for i, e := range nums {
 		if i == 0 || e < minVal {

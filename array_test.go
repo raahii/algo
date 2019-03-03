@@ -8,11 +8,19 @@ import (
 
 func TestMaxInts(t *testing.T) {
 	input := []int{1, 0, 100, 5, 10, -2, -100, 100}
+	actual := MaxInts(input...)
+
+	expected := 100
+	assert.Equal(t, expected, actual)
+}
+
+func TestMaxIntsWithIdx(t *testing.T) {
+	input := []int{1, 0, 100, 5, 10, -2, -100, 100}
 	actual := struct {
 		Value int
 		Index int
 	}{}
-	actual.Value, actual.Index = MaxInts(input)
+	actual.Value, actual.Index = MaxIntsWithIdx(input...)
 
 	expected := struct {
 		Value int
@@ -23,11 +31,19 @@ func TestMaxInts(t *testing.T) {
 
 func TestMinInts(t *testing.T) {
 	input := []int{1, 0, 100, 5, 10, -2, -100, 100}
+	actual := MinInts(input...)
+
+	expected := -100
+	assert.Equal(t, expected, actual)
+}
+
+func TestMinIntsWithIdx(t *testing.T) {
+	input := []int{1, 0, 100, 5, 10, -2, -100, 100}
 	actual := struct {
 		Value int
 		Index int
 	}{}
-	actual.Value, actual.Index = MinInts(input)
+	actual.Value, actual.Index = MinIntsWithIdx(input...)
 
 	expected := struct {
 		Value int
