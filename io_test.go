@@ -54,18 +54,16 @@ func TestReadInts(t *testing.T) {
 	assert.Equal(t, expected, actual)
 }
 
-func TestScanInts(t *testing.T) {
-	f, err := TempFile("3 5 7\n")
+func TestReadLine(t *testing.T) {
+	str := "010101001001001000001010101010011111111111101100101000010101001000000000\n"
+	f, err := TempFile(str)
 	if err != nil {
 		t.Fatal(err)
 	}
 	defer f.Close()
 
-	var A, B, C int
-	ScanInts(f, &A, &B, &C)
-	actual := []int{A, B, C}
-
-	expected := []int{3, 5, 7}
+	expected := "010101001001001000001010101010011111111111101100101000010101001000000000"
+	actual := ReadLine(f)
 	assert.Equal(t, expected, actual)
 }
 

@@ -1,7 +1,6 @@
 package algo
 
 import (
-	"bufio"
 	"fmt"
 	"os"
 )
@@ -28,15 +27,17 @@ func ScanInts(f *os.File, vars ...*int) {
 	}
 }
 
+func ReadLine(f *os.File) string {
+	var str string
+	fmt.Fscanf(f, "%s", &str)
+
+	return str
+}
+
 func ReadLines(f *os.File, n int) []string {
-	var lines []string
-	reader := bufio.NewReader(f)
+	lines := make([]string, n)
 	for i := 0; i < n; i++ {
-		bytes, _, err := reader.ReadLine()
-		if err != nil {
-			break
-		}
-		lines = append(lines, string(bytes))
+		fmt.Fscanf(f, "%s", &lines[i])
 	}
 
 	return lines
