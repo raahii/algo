@@ -43,12 +43,62 @@ func (this *StackInt) Push(v int) {
 	this.length++
 }
 
-func (this *StackInt) Print() {
-	fmt.Printf("[")
+func (this *StackInt) Print() string {
+	str := "["
 	for i := 0; i < this.length; i++ {
-		fmt.Printf(" %d", this.data[i])
+		str += fmt.Sprintf(" %d", this.data[i])
 	}
-	fmt.Printf(" ]")
+	str += " ]"
+
+	return str
+}
+
+/* StackString */
+
+type StackString struct {
+	data   []string
+	length int
+}
+
+func NewStackString() *StackString {
+	return &StackString{[]string{}, 0}
+}
+
+func (this *StackString) Len() int {
+	return this.length
+}
+
+func (this *StackString) Peek() string {
+	if this.length == 0 {
+		panic("Stack is empty!")
+	}
+	return this.data[this.length-1]
+}
+
+func (this *StackString) Pop() string {
+	if this.length == 0 {
+		panic("Stack is empty!")
+	}
+	v := this.data[this.length-1]
+	this.data = this.data[0 : this.length-1]
+	this.length--
+
+	return v
+}
+
+func (this *StackString) Push(v string) {
+	this.data = append(this.data, v)
+	this.length++
+}
+
+func (this *StackString) Print() string {
+	str := "["
+	for i := 0; i < this.Len(); i++ {
+		str += fmt.Sprintf(" \"%s\"", this.data[i])
+	}
+	str += " ]"
+
+	return str
 }
 
 /* QueueInt */
@@ -89,10 +139,12 @@ func (this *QueueInt) Enqueue(v int) {
 	this.length++
 }
 
-func (this *QueueInt) Print() {
-	fmt.Printf("[")
+func (this *QueueInt) Print() string {
+	str := "["
 	for i := 0; i < this.length; i++ {
-		fmt.Printf(" %d", this.data[i])
+		str += fmt.Sprintf(" %d", this.data[i])
 	}
-	fmt.Printf(" ]")
+	str += " ]"
+
+	return str
 }
