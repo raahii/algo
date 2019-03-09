@@ -1,6 +1,9 @@
 package algo
 
-import "sort"
+import (
+	"fmt"
+	"sort"
+)
 
 /* Array */
 
@@ -54,6 +57,16 @@ func SumInts(nums []int) int {
 	return s
 }
 
+func SumInts2d(mat [][]int) int {
+	s := 0
+	for _, nums := range mat {
+		for _, v := range nums {
+			s += v
+		}
+	}
+	return s
+}
+
 func ReverseInts(nums []int) []int {
 	rnums := make([]int, len(nums))
 	for i := 0; i < len(nums); i++ {
@@ -75,6 +88,21 @@ func Ints2d(n_rows, n_cols int) [][]int {
 		ints[i] = make([]int, n_cols)
 	}
 	return ints
+}
+
+func StrInts2d(mat [][]int) string {
+	str := ""
+	for i := 0; i < len(mat); i++ {
+		str += fmt.Sprintf("[%d", mat[i][0])
+		for j := 1; j < len(mat[0]); j++ {
+			str += fmt.Sprintf(" %d", mat[i][j])
+		}
+		str += "]"
+		if i != len(mat)-1 {
+			str += "\n"
+		}
+	}
+	return str
 }
 
 func MemsetInts1d(nums []int, val int) {

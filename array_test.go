@@ -60,6 +60,17 @@ func TestSumInts(t *testing.T) {
 	assert.Equal(t, expected, actual)
 }
 
+func TestSumInts2d(t *testing.T) {
+	input := [][]int{
+		[]int{1, 2, 3, 4, 5},
+		[]int{6, 7, 8, 9, 10},
+	}
+	actual := SumInts2d(input)
+
+	expected := 55
+	assert.Equal(t, expected, actual)
+}
+
 func TestReverseInts(t *testing.T) {
 	input := []int{1, 0, 100, 5, 10, -2, -100, 100}
 	actual := ReverseInts(input)
@@ -80,6 +91,16 @@ func TestInts2d(t *testing.T) {
 	actual := Ints2d(20, 10)
 	assert.Equal(t, 20, len(actual))
 	assert.Equal(t, 10, len(actual[0]))
+}
+
+func TestStrInts2d(t *testing.T) {
+	mat := [][]int{
+		[]int{1, 2, 3, 4, 5},
+		[]int{6, 7, 8, 9, 10},
+	}
+	actual := StrInts2d(mat)
+	expected := "[1 2 3 4 5]\n[6 7 8 9 10]"
+	assert.Equal(t, expected, actual)
 }
 
 func TestMemsetInts1d(t *testing.T) {
