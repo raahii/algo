@@ -148,3 +148,65 @@ func (this *QueueInt) Print() string {
 
 	return str
 }
+
+/* Union Find */
+
+type UnionFind struct {
+	Size  int
+	Nodes []int
+	Ranks []int
+}
+
+func NewUnionFind(n int) *UnionFind {
+	nodes := make([]int, n)
+	counts := make([]int, n)
+	for i := 0; i < n; i++ {
+		nodes[i] = i
+		counts[i] = 1
+	}
+	return &UnionFind{n, nodes, counts}
+}
+
+func (p *UnionFind) Root(a int) int {
+	nodes := []int{}
+
+	par := p.Nodes[a]
+	var root int
+	for {
+		if par == p.Nodes[par] {
+			root = par
+			break
+		}
+		nodes = append(nodes, par)
+		par = p.Nodes[par]
+	}
+
+	for _, n := range nodes {
+		p.Nodes[n] = root
+	}
+
+	return root
+}
+
+func (p *UnionFind) Merge(a, b int) {
+	if a == b {
+		return
+	}
+
+	if p.Rank(a) > p.Rank(b) {
+		a, b = b, a
+	}
+	ra, rb := p.Root(a), p.Root(b)
+	p.Nodes[rb] = ra
+
+	p.Ranks[ra] += p.Ranks[rb]
+	p.Ranks[rb] = 0
+}
+
+func (p *UnionFind) Same(a, b int) bool {
+	return p.Root(a) == p.Root(b)
+}
+
+func (p *UnionFind) Rank(a int) int {
+	return p.Ranks[p.Root(a)]
+}

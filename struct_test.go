@@ -2,6 +2,8 @@ package algo
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 /* StackInt */
@@ -152,4 +154,31 @@ func TestQueueInt(t *testing.T) {
 	if q.Peek() != 2 {
 		t.Errorf("Next value should be 2")
 	}
+}
+
+/* Union Find */
+
+func TestUnionFind(t *testing.T) {
+	n := 4
+	uf := NewUnionFind(n)
+
+	for i := 0; i < n; i++ {
+		assert.Equal(t, i, uf.Root(i))
+		assert.Equal(t, 1, uf.Rank(i))
+	}
+
+	// connect 0 and 1
+	assert.False(t, uf.Same(0, 1))
+	uf.Merge(0, 1)
+	assert.True(t, uf.Same(0, 1))
+	assert.Equal(t, 2, uf.Rank(0))
+	assert.Equal(t, 2, uf.Rank(1))
+
+	// connect 2 and 3, 1 and 3
+	uf.Merge(2, 3)
+	assert.Equal(t, 2, uf.Rank(2))
+	uf.Merge(1, 3)
+	assert.Equal(t, 4, uf.Rank(1))
+	assert.Equal(t, 4, uf.Rank(0))
+	assert.True(t, uf.Same(0, 2))
 }
