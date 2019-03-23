@@ -140,3 +140,17 @@ func ContainsInt(nums []int, num int) bool {
 
 	return false
 }
+
+func UniqInts(nums []int) []int {
+	m := make(map[int]struct{}, len(nums))
+	for _, n := range nums {
+		m[n] = struct{}{}
+	}
+
+	unums := make([]int, 0, len(nums))
+	for k, _ := range m {
+		unums = append(unums, k)
+	}
+
+	return unums
+}

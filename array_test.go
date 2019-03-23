@@ -144,3 +144,10 @@ func TestContainsInt(t *testing.T) {
 	expected = false
 	assert.Equal(t, expected, actual)
 }
+
+func TestUniqInts(t *testing.T) {
+	nums := []int{1, 1, 2, 3, 4, 4, 5, 5}
+	actual := UniqInts(nums)
+	expected := []int{1, 2, 3, 4, 5}
+	assert.ElementsMatch(t, expected, actual)
+}
