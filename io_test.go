@@ -28,33 +28,33 @@ func TempFile(str string) (*os.File, error) {
 	return f, nil
 }
 
-func TestReadInt(t *testing.T) {
+func TestReadIntF(t *testing.T) {
 	f, err := TempFile("3\n")
 	if err != nil {
 		t.Fatal(err)
 	}
 	defer f.Close()
 
-	actual := ReadInt(f)
+	actual := ReadIntF(f)
 
 	expected := 3
 	assert.Equal(t, expected, actual)
 }
 
-func TestReadInts(t *testing.T) {
+func TestReadIntsF(t *testing.T) {
 	f, err := TempFile("3 5 7\n")
 	if err != nil {
 		t.Fatal(err)
 	}
 	defer f.Close()
 
-	actual := ReadInts(f, 3)
+	actual := ReadIntsF(f, 3)
 
 	expected := []int{3, 5, 7}
 	assert.Equal(t, expected, actual)
 }
 
-func TestReadLine(t *testing.T) {
+func TestReadLineF(t *testing.T) {
 	str := "010101001001001000001010101010011111111111101100101000010101001000000000\n"
 	f, err := TempFile(str)
 	if err != nil {
@@ -63,11 +63,11 @@ func TestReadLine(t *testing.T) {
 	defer f.Close()
 
 	expected := "010101001001001000001010101010011111111111101100101000010101001000000000"
-	actual := ReadLine(f)
+	actual := ReadLineF(f)
 	assert.Equal(t, expected, actual)
 }
 
-func TestReadLines(t *testing.T) {
+func TestReadLinesF(t *testing.T) {
 	str := "オッス！おら悟空！\nいっちょやってみっか！\n"
 	f, err := TempFile(str)
 	if err != nil {
@@ -79,19 +79,6 @@ func TestReadLines(t *testing.T) {
 		"オッス！おら悟空！",
 		"いっちょやってみっか！",
 	}
-	actual := ReadLines(f, 2)
-	assert.Equal(t, expected, actual)
-}
-
-func TestReadWords(t *testing.T) {
-	f, err := TempFile("hop step jump\n")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer f.Close()
-
-	actual := ReadWords(f, 3)
-
-	expected := []string{"hop", "step", "jump"}
+	actual := ReadLinesF(f, 2)
 	assert.Equal(t, expected, actual)
 }
