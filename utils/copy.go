@@ -49,6 +49,7 @@ func main() {
 		"../array.go",
 		"../io.go",
 		"../calc.go",
+		"../util.go",
 	}
 
 	allFuncStr := ""
