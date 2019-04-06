@@ -3,6 +3,7 @@ package algo
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 )
@@ -15,7 +16,7 @@ func ReadInt() int {
 	return n
 }
 
-func ReadIntF(f *os.File) int {
+func ReadIntF(f io.Reader) int {
 	var n int
 	fmt.Fscanf(f, "%d", &n)
 	return n
@@ -29,7 +30,7 @@ func ReadInts(n int) []int {
 	return nums
 }
 
-func ReadIntsF(f *os.File, n int) []int {
+func ReadIntsF(f io.Reader, n int) []int {
 	nums := make([]int, n)
 	for i := 0; i < n; i++ {
 		fmt.Fscanf(f, "%d", &nums[i])
@@ -37,13 +38,13 @@ func ReadIntsF(f *os.File, n int) []int {
 	return nums
 }
 
-func ReadWord(f *os.File) string {
+func ReadWord(f io.Reader) string {
 	var str string
 	fmt.Scan(&str)
 	return str
 }
 
-func ReadWordF(f *os.File) string {
+func ReadWordF(f io.Reader) string {
 	var str string
 	fmt.Fscanf(f, "%s", &str)
 	return str
@@ -56,7 +57,7 @@ func ReadLine() string {
 	return str
 }
 
-func ReadLineF(f *os.File) string {
+func ReadLineF(f io.Reader) string {
 	r := bufio.NewReader(f)
 	str, _ := r.ReadString('\n')
 	str = strings.Trim(str, "\n")
@@ -73,7 +74,7 @@ func ReadLines(n int) []string {
 	return lines
 }
 
-func ReadLinesF(f *os.File, n int) []string {
+func ReadLinesF(f io.Reader, n int) []string {
 	r := bufio.NewReader(f)
 	lines := make([]string, n)
 	for i := 0; i < n; i++ {
