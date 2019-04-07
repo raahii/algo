@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestallComb(t *testing.T) {
+func TestAllComb(t *testing.T) {
 	n := 2
 	actual := AllComb(n)
 
@@ -19,7 +19,8 @@ func TestallComb(t *testing.T) {
 
 	assert.ElementsMatch(t, expected, actual)
 }
-func TestallCombChan(t *testing.T) {
+
+func TestAllCombChan(t *testing.T) {
 	n := 2
 	nPatterns := 1 << uint(n)
 

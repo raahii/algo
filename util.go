@@ -28,29 +28,35 @@ func AllCombChan(n int, c chan []int) {
 }
 
 func PermuteInts(nums []int) [][]int {
-	n := len(nums)
-	nPatterns := Factorial(n)
-
-	ret := make([][]int, 0, nPatterns)
-	var cur []int
-	permuteInts(n, cur, nums, &ret)
-
+	n := Factorial(len(nums))
+	ret := make([][]int, 0, n)
+	permuteInts(nums, &ret)
 	return ret
 }
 
-func permuteInts(n int, cur, nums []int, ret *[][]int) {
-	if n == 0 {
-		*ret = append(*ret, cur)
-		return
-	}
+func permuteInts(nums []int, ret *[][]int) {
+	*ret = append(*ret, makeCopy(nums))
 
-	for i := 0; i < n; i++ {
-		rest := make([]int, 0, n-1)
-		for j := 0; j < n; j++ {
-			if i != j {
-				rest = append(rest, nums[j])
-			}
-		}
-		permuteInts(n-1, append(cur, nums[i]), rest, ret)
+	n := len(nums)
+	p := make([]int, n+1)
+	for i := 0; i < n+1; i++ {
+		p[i] = i
 	}
+	for i := 1; i < n; {
+		p[i]--
+		j := 0
+		if i%2 == 1 {
+			j = p[i]
+		}
+
+		nums[i], nums[j] = nums[j], nums[i]
+		*ret = append(*ret, makeCopy(nums))
+		for i = 1; p[i] == 0; i++ {
+			p[i] = i
+		}
+	}
+}
+
+func makeCopy(nums []int) []int {
+	return append([]int{}, nums...)
 }
